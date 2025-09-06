@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio Leônico</title>
+
     <style>
         #container {
             display: inline-block;
@@ -28,6 +29,7 @@
             font-weight: bold;
             font-size: 80px;
             margin: 20%;
+            position: static;
         }
 
         .stats {
@@ -43,10 +45,12 @@
 </head>
 
 <body>
+<script src="logic.js"></script>
+
     <div id="container">
         <span class="stats">Pontuação: 1 </span>
         <span id="questao">Questão X</span>
-        <span class="stats">00:00 </span>
+        <span class="stats" id="timer">00:00 </span>
     </div>
     <div id="container2">
         <h3 id="textoquestao">" ?"</h3>

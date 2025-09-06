@@ -1,10 +1,10 @@
 let timer = 10;
 
-while(timer > 1) {
-    setTimeout(function() {
-      timer--;
-      document.getElementById('timer').textContent = timer;
-    }, 1000); // 3000 milliseconds = 3 seconds
-}
+const interval = setInterval(function() {
+  timer--;
+  document.getElementById('timer').textContent = timer.toString();
 
-    document.getElementById('yourId')
+  if (timer <= 0) {
+    clearInterval(interval);
+  }
+}, 1000);
