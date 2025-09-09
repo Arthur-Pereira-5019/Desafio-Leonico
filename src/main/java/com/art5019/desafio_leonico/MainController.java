@@ -13,7 +13,6 @@ public class MainController {
 
     @GetMapping("/")
     public String mainPage() {
-        logger.info("Atempted");
         return "mainPage";
     }
 }
