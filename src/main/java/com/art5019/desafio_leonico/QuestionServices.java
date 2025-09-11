@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -20,6 +21,11 @@ public class QuestionServices {
 
     public Question findQuestion(Long id) {
         return qr.findById(id).orElseThrow(EntityNotFoundException::new);
+    }
+
+    public boolean tryToGuess(Long id, String answer) {
+        Question q = findQuestion(id);
+        return Objects.equals(q.answer, answer);
     }
 
     public void deleteQuestion(Long id) {
