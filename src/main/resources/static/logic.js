@@ -1,4 +1,3 @@
-fetchData();
 let timer = 15;
 
 const interval = setInterval(function() {
@@ -37,7 +36,7 @@ async function fetchData() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    return data;
+    return JSON.stringify(data);
   } catch (error) {
     console.error('Error fetching data:', error);
   }

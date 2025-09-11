@@ -26,8 +26,59 @@ public class Question implements Serializable {
     @Column()
     QuestionType type;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getStatement() {
+        return statement;
+    }
 
+    public void setStatement(String statement) {
+        this.statement = statement;
+    }
 
+    public int getBasePoints() {
+        return basePoints;
+    }
+
+    public void setBasePoints(int basePoints) {
+        this.basePoints = basePoints;
+    }
+
+    public int getDificulty() {
+        return dificulty;
+    }
+
+    public void setDificulty(int dificulty) {
+        this.dificulty = dificulty;
+    }
+
+    public int getExtraTime() {
+        return extraTime;
+    }
+
+    public void setExtraTime(int extraTime) {
+        this.extraTime = extraTime;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public QuestionType getType() {
+        return type;
+    }
+
+    public void setType(QuestionType type) {
+        this.type = type;
+    }
 }

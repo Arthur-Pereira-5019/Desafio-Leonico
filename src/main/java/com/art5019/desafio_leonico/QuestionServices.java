@@ -35,4 +35,15 @@ public class QuestionServices {
         return questions.get(random.nextInt(0, questions.size()));
     }
 
+    public Question mock() {
+        Question q = new Question();
+        q.setAnswer("2");
+        q.setType(QuestionType.OPEN);
+        q.setBasePoints(3);
+        q.setStatement("Quantos folhetos embrionários tem os cnidários");
+        q.setExtraTime(1);
+        q.setDificulty(2);
+        return q;
+    }
+
 }
