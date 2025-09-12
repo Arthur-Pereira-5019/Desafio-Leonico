@@ -29,4 +29,9 @@ public class MainRestController {
         return qs.mock();
     }
 
+    @PostMapping("/api/q/a")
+    public Question answer() {
+        return qs.tryToGuess();
+    }
+
 }
