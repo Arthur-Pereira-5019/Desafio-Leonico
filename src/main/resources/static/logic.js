@@ -1,10 +1,12 @@
-fetchData();
-let timer = 15;
-let question = 1;
+let timer = 1;
+let question = 0;
+let pontuation = 1;
+let storedId = 0;
+let answeredTimes = 0;
+fetchQuestion();
 
 
-
-const interval = setInterval(function() {
+const interval = setInterval(function () {
     timer--;
     document.getElementById('timer').textContent = formatTime(timer);
 
@@ -29,10 +31,11 @@ function formatTime(time) {
     } else {
         result = "0" + minutes.toString() + middleString + time.toString();
     }
-    return result; // Optional: return a value
+    return result;
 }
 
-async function fetchData() {
+async function fetchQuestion() {
+    question++;
     const url = '/api/q';
     try {
         const response = await fetch(url);
@@ -40,7 +43,9 @@ async function fetchData() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        storedId = data.id;
         timer = 15 + data.extraTime;
+    document.getElementById('questao').textContent = "Questão: " + question;
         document.getElementById('textoquestao').textContent = data.statement;
         if (data.type = "1") {
             setQuestionSystem();
@@ -52,20 +57,33 @@ async function fetchData() {
 }
 
 async function postAnswer() {
+    answeredTimes++;
     const url = '/api/q/answer';
-    method: 'POST'
+    const input = document.getElementById('aInput');
+    const data = {
+        id: storedId,
+        answer: input.value,
+        remainingTime: timer,
+        triedTimes: answeredTimes
+    };
+
     try {
-        const response = await fetch(url);
+        const response = await fetch(
+            url, 
+            { method: 'POST', headers: 
+                { "Content-Type": "application/json" }, 
+            body: JSON.stringify(data) });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        timer = 15 + data.extraTime;
-        document.getElementById('textoquestao').textContent = data.statement;
-        if (data.type = "1") {
-            setQuestionSystem();
+        const result = await response.json();
+        pontuation += result.points;
+        document.getElementById('point').textContent = "Pontuação: " + pontuation;
+        if (result.won) {
+            triedTimes = 0;
+            fetchQuestion();
         }
-        return JSON.stringify(data);
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -74,10 +92,10 @@ async function postAnswer() {
 async function setQuestionSystem() {
     const input = document.getElementById('input');
 
-    input.innerHTML = '<textarea id="myTextArea" name="message" rows="5" cols="40" placeholder="Type your text here..."></textarea><br><br>';
+    input.innerHTML = '<textarea id="aInput" name="message" rows="5" cols="40" placeholder="Type your text here..."></textarea><br><br>';
     const button = document.getElementById('submit');
 
-    button.addEventListener("click", function() {
-        alert("Button clicked!");
+    button.addEventListener("click", async function () {
+        await postAnswer();
     });
 }
