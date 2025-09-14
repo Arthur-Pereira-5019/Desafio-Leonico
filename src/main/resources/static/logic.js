@@ -3,7 +3,11 @@ let question = 0;
 let pontuation = 1;
 let storedId = 0;
 let answeredTimes = 0;
+
+
 fetchQuestion();
+addButtonListener();
+
 
 
 const interval = setInterval(function () {
@@ -35,6 +39,7 @@ function formatTime(time) {
 }
 
 async function fetchQuestion() {
+    console.log("Fetched")
     question++;
     const url = '/api/q';
     try {
@@ -93,9 +98,12 @@ async function setQuestionSystem() {
     const input = document.getElementById('input');
 
     input.innerHTML = '<textarea id="aInput" name="message" rows="5" cols="40" placeholder="Type your text here..."></textarea><br><br>';
+}
+
+function addButtonListener() {
     const button = document.getElementById('submit');
 
-    button.addEventListener("click", async function () {
-        await postAnswer();
-    });
+button.addEventListener("click", async function () {
+    await postAnswer();
+});
 }
