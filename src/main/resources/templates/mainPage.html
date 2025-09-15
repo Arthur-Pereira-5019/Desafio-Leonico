@@ -12,17 +12,22 @@
             align-items: center;
             justify-items: center;
             width: 100%;
-            height: 20vw;
-            text-align:center;
+            height: 20vh;
+            text-align: center;
         }
 
         #container2 {
-            display: inline-block;
+            display: flex;
+            flex-direction: row;
             align-items: center;
             justify-items: center;
             width: 100%;
-            height: 20vw;
-            text-align:center;
+            height: 80vh;
+            text-align: center;
+        }
+
+        #container3 {
+            display: inline-block;
         }
 
         #questao {
@@ -40,7 +45,11 @@
             font-size: 40px;
         }
 
-        #input {
+        #leaderbord {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
         }
 
 
@@ -50,17 +59,20 @@
 <body>
 
     <div id="container">
-        <span id = "point" class="stats">Pontuação: 1 </span>
+        <span id="point" class="stats">Pontuação: 1 </span>
         <span id="questao">Questão X</span>
         <span class="stats" id="timer">00:00 </span>
     </div>
     <div id="container2">
-        <h3 id="textoquestao">" ?"</h3>
-        <div id = "input"></div>
-        <button id="submit">Responder</button>
+        <div id="leaderbord">
+        </div>
+        <container>
+            <h3 id="textoquestao">" ?"</h3>
+            <div id="input"></div>
+            <button id="submit">Responder</button>
+        </container>
     </div>
-<script src="logic.js"></script>
-
+    <script src="logic.js"></script>
 </body>
 
 </html>
