@@ -2,8 +2,10 @@ package com.art5019.desafio_leonico;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
+@EnableCaching
 public class DesafioLeonicoApplication {
 
 	public static void main(String[] args) {

@@ -1,5 +1,8 @@
 package com.art5019.desafio_leonico;
 
+import com.art5019.desafio_leonico.entities.Answer;
+import com.art5019.desafio_leonico.entities.Question;
+import com.art5019.desafio_leonico.services.QuestionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

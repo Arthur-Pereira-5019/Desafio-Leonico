@@ -1,4 +1,4 @@
-package com.art5019.desafio_leonico;
+package com.art5019.desafio_leonico.entities;
 
 import jakarta.persistence.*;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Question implements Serializable {
 
     @Id
-            @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @Column(nullable = false)
