@@ -14,7 +14,7 @@ public class Match {
     Integer id;
 
     @OneToMany(mappedBy = "currentMatch")
-    List<LoggedPlayer> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
 
 
 }
