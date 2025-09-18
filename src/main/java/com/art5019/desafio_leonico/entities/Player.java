@@ -8,6 +8,13 @@ import java.util.Date;
 @Table(schema = "player")
 public class Player {
 
+    public Player() {
+    }
+
+    public Player(String name) {
+        this.name = name;
+    }
+
     @Column
     int points;
 
@@ -15,10 +22,14 @@ public class Player {
     Date startedLastQuestion;
 
     @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
     @Column
     int currentQuestion;
+
+    @Column
+    String name;
 
     @ManyToOne
     @JoinColumn(name = "id")

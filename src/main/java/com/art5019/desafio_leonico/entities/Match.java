@@ -16,5 +16,19 @@ public class Match {
     @OneToMany(mappedBy = "currentMatch")
     List<Player> players = new ArrayList<>();
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
 }
