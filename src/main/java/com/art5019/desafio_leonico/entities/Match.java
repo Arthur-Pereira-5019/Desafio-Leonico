@@ -1,5 +1,6 @@
 package com.art5019.desafio_leonico.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -16,6 +17,9 @@ public class Match {
     @OneToMany(mappedBy = "currentMatch")
     List<Player> players = new ArrayList<>();
 
+    @Column
+    String password;
+
     public Integer getId() {
         return id;
     }
@@ -30,5 +34,13 @@ public class Match {
 
     public void setPlayers(List<Player> players) {
         this.players = players;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
