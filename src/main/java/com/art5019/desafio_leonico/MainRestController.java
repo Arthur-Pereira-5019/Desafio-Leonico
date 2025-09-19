@@ -1,40 +1,50 @@
 package com.art5019.desafio_leonico;
 
 import com.art5019.desafio_leonico.entities.Answer;
+import com.art5019.desafio_leonico.entities.Match;
 import com.art5019.desafio_leonico.entities.Question;
+import com.art5019.desafio_leonico.services.MatchServices;
 import com.art5019.desafio_leonico.services.QuestionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class MainRestController {
 
     @Autowired
     QuestionServices qs;
 
-    @GetMapping("/api/q")
+    @Autowired
+    MatchServices ms;
+
+    @GetMapping("/q")
     public Question question() {
         return qs.randomQuestion();
     }
 
-    @PostMapping("/api/q")
+    @PostMapping("/q")
     public Question createQuestion(@RequestBody Question q) {
         return qs.saveQuestion(q);
     }
 
-    @DeleteMapping("/api/q/{id}")
+    @DeleteMapping("/q/{id}")
     public void deleteQuestion(@PathVariable("id") Long id) {
         qs.deleteQuestion(id);
     }
 
-    @GetMapping("/api/q/mock")
+    @GetMapping("/q/mock")
     public Question mock() {
         return qs.mock();
     }
 
-    @PostMapping("/api/q/answer")
+    @PostMapping("/q/answer")
     public Result answer(@RequestBody Answer a) {
         return qs.tryToGuess(a);
     }
 
+    @PostMapping("/matchData/{id}")
+    public Match matchData(@PathVariable("id") Integer id) {
+        return ms.findById(id);
+    }
 }

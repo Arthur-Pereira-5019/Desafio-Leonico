@@ -21,7 +21,7 @@ public class Player {
     @Column
     Date startedLastQuestion;
 
-    @Column
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
 
@@ -32,7 +32,7 @@ public class Player {
     String name;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "match_id")
     Match currentMatch;
 
     public int getPoints() {

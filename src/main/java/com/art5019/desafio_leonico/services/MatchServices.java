@@ -28,11 +28,12 @@ public class MatchServices {
     }
 
     public void joinMatch (JoinMatchRequest jmr) {
-        Player p = new Player(jmr.playerName());
-        ps.savePlayer(p);
         Match m = findById(jmr.id());
-        m.getPlayers().add(p);
-
+        if(jmr.password().equals(m.getPassword())) {
+            Player p = new Player(jmr.playerName());
+            ps.savePlayer(p);
+            m.getPlayers().add(p);
+        }
     }
 
 }
