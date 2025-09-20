@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Desafio Leônico</title>
     <style>
-        body,
-        html {
+
+        body, html {
+            margin: 0;
             width: 100vw;
             height: 100vh;
-            margin: 0;
-            overflow-x: hidden;
-            background-color: green;
+            background-color: rgb(68, 129, 51);
         }
 
         #container {
-            position: relative;
             display: flex;
             flex-direction: column;
-            left: 50%;
             align-items: center;
+            width: 68vw;
+            position: relative;
+            left: 50%;
             transform: translateX(-50%);
-            gap: 1vh;
-            height: 70%;
+            height: 100%;
+            gap: 4vh
         }
 
-        #footer {
-            position: absolute;
-            bottom: 0vh;
+        #buttons {
+            display: flex;
             width: 100%;
-            height: 30%;
-            background-color: yellowgreen;
+            gap: 16vw;
         }
+
+        #buttons *{
+            flex: 1
+        }
+
+        
     </style>
 </head>
-
 <body>
     <div id="container">
         <h1>Desafio Leônico</h1>
-        <p>Nome</p>
-        <input id="nameField">
-        <p>Chave da Partida</p>
-        <input id="idField">
-        <button>Entrar</button>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptate eligendi! Deserunt repellat aliquid, ullam ad magnam iure natus cumque iste delectus aperiam est laborum distinctio voluptatum alias, quis officiis!</p>
+        <div id="buttons">
+            <button id="jogar">Jogar</button>
+            <button id="criar">Criar</button>
+        </div>
     </div>
-    <div id="footer">
-    </div>
-
+    <script src="mainMenu.js"></script>
 </body>
-
 </html>
