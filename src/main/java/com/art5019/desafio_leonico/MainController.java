@@ -13,6 +13,21 @@ public class MainController {
 
     @GetMapping("/")
     public String mainPage() {
-        return "mainPage";
+        return "mainMenu";
+    }
+
+    @GetMapping("/createMatch")
+    public String createMatchPage() {
+        return "createMatch";
+    }
+
+    @GetMapping("/joinMatchMenu")
+    public String joinMatchMenu() {
+        return "joinMatchMenu";
+    }
+
+    @GetMapping("/match/{id}")
+    public String matchPage() {
+        return "match";
     }
 }

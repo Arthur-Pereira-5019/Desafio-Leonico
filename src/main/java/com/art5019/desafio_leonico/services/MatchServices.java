@@ -1,5 +1,6 @@
 package com.art5019.desafio_leonico.services;
 
+import com.art5019.desafio_leonico.entities.CreateMatchRequest;
 import com.art5019.desafio_leonico.entities.JoinMatchRequest;
 import com.art5019.desafio_leonico.entities.Match;
 import com.art5019.desafio_leonico.entities.Player;
@@ -34,6 +35,12 @@ public class MatchServices {
             ps.savePlayer(p);
             m.getPlayers().add(p);
         }
+    }
+
+    public Integer createMatch(CreateMatchRequest cmr) {
+        Match m = new Match();
+        m.setPassword(cmr.password());
+        return mr.save(m).getId();
     }
 
 }

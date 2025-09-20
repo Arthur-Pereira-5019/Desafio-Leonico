@@ -2,8 +2,8 @@ const jogarBtn = document.getElementById('jogar');
 const criarBtn = document.getElementById('criar');
 
 
-jogarBtn.addEventListener('click', clickPlay("https://www.example.com/new-page.html"));
-criarBtn.addEventListener('click', clickPlay("https://www.example.com/new-page.html"));
+jogarBtn.addEventListener('click', function() {clickPlay("http://localhost:8080/joinMatchMenu")});
+criarBtn.addEventListener('click', function() {clickPlay("http://localhost:8080/createMatch")});
 
 
 function clickPlay(url) {

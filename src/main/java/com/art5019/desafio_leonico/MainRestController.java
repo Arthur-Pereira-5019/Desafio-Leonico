@@ -1,12 +1,16 @@
 package com.art5019.desafio_leonico;
 
 import com.art5019.desafio_leonico.entities.Answer;
+import com.art5019.desafio_leonico.entities.CreateMatchRequest;
 import com.art5019.desafio_leonico.entities.Match;
 import com.art5019.desafio_leonico.entities.Question;
 import com.art5019.desafio_leonico.services.MatchServices;
 import com.art5019.desafio_leonico.services.QuestionServices;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -46,5 +50,12 @@ public class MainRestController {
     @PostMapping("/matchData/{id}")
     public Match matchData(@PathVariable("id") Integer id) {
         return ms.findById(id);
+    }
+
+    @PostMapping("/match/createApi")
+    public Integer createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
+        Integer newMatchId = ms.createMatch(cmr);
+        response.sendRedirect("/match"+newMatchId);
+        return newMatchId;
     }
 }
