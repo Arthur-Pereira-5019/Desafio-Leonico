@@ -1,20 +1,21 @@
 package com.art5019.desafio_leonico.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "active_match")
 public class Match {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "match_id")
     Integer id;
 
-    @OneToMany(mappedBy = "currentMatch")
+    @OneToMany
+    @JoinColumn(name = "players")
     List<Player> players = new ArrayList<>();
 
     @Column

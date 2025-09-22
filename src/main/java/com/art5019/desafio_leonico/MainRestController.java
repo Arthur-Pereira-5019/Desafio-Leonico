@@ -52,10 +52,10 @@ public class MainRestController {
         return ms.findById(id);
     }
 
-    @PostMapping("/match/createApi")
+    @PostMapping("/match/createMatch")
     public Integer createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
         Integer newMatchId = ms.createMatch(cmr);
-        response.sendRedirect("/match"+newMatchId);
+        response.sendRedirect("/match/"+newMatchId);
         return newMatchId;
     }
 }
