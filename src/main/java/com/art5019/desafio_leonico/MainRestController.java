@@ -1,9 +1,6 @@
 package com.art5019.desafio_leonico;
 
-import com.art5019.desafio_leonico.entities.Answer;
-import com.art5019.desafio_leonico.entities.CreateMatchRequest;
-import com.art5019.desafio_leonico.entities.Match;
-import com.art5019.desafio_leonico.entities.Question;
+import com.art5019.desafio_leonico.entities.*;
 import com.art5019.desafio_leonico.services.MatchServices;
 import com.art5019.desafio_leonico.services.QuestionServices;
 import jakarta.servlet.http.HttpServletResponse;
@@ -53,9 +50,8 @@ public class MainRestController {
     }
 
     @PostMapping("/match/createMatch")
-    public Integer createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
-        Integer newMatchId = ms.createMatch(cmr);
-        response.sendRedirect("/match/"+newMatchId);
-        return newMatchId;
+    public CreateMatchReturn createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
+        CreateMatchReturn createMatchReturn = new CreateMatchReturn(ms.createMatch(cmr));
+        return createMatchReturn;
     }
 }
