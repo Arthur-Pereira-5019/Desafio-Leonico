@@ -8,7 +8,28 @@ let answeredTimes = 0;
 fetchQuestion();
 addButtonListener();
 
+ const socket = new WebSocket("ws://localhost:8080");
 
+  // Quando a conexão abrir
+  socket.onopen = () => {
+    console.log("Conectado ao servidor WebSocket!");
+    socket.send("Olá servidor 👋");
+  };
+
+  // Quando chegar mensagem
+  socket.onmessage = (event) => {
+    console.log("Mensagem recebida:", event.data);
+  };
+
+  // Se ocorrer algum erro
+  socket.onerror = (error) => {
+    console.error("Erro no WebSocket:", error);
+  };
+
+  // Quando fechar
+  socket.onclose = () => {
+    console.log("Conexão fechada.");
+  };
 
 const interval = setInterval(function () {
     timer--;

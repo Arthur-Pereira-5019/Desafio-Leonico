@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
+@CrossOrigin(origins = "")
 @RestController
 @RequestMapping("/api")
 public class MainRestController {
@@ -50,8 +51,8 @@ public class MainRestController {
     }
 
     @PostMapping("/match/createMatch")
-    public CreateMatchRequest createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
-        CreateMatchRequest createMatchReturn = new CreateMatchRequest(ms.createMatch(cmr));
-        return createMatchReturn;
+    public Match createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
+        return ms.createMatch(cmr);
     }
+
 }

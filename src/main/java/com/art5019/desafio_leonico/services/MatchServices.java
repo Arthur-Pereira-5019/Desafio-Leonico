@@ -37,10 +37,10 @@ public class MatchServices {
         }
     }
 
-    public Integer createMatch(CreateMatchRequest cmr) {
+    public Match createMatch(CreateMatchRequest cmr) {
         Match m = new Match();
         m.setPassword(cmr.password());
-        return mr.save(m).getId();
+        return mr.save(m);
     }
 
 }
