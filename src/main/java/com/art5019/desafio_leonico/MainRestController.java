@@ -50,8 +50,8 @@ public class MainRestController {
     }
 
     @PostMapping("/match/createMatch")
-    public CreateMatchReturn createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
-        CreateMatchReturn createMatchReturn = new CreateMatchReturn(ms.createMatch(cmr));
+    public CreateMatchRequest createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
+        CreateMatchRequest createMatchReturn = new CreateMatchRequest(ms.createMatch(cmr));
         return createMatchReturn;
     }
 }
