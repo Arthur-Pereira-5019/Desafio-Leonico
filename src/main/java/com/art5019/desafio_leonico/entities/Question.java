@@ -26,6 +26,9 @@ public class Question implements Serializable {
     @Column()
     QuestionType type;
 
+    @Column
+    String theme;
+
     public Long getId() {
         return id;
     }
@@ -80,5 +83,13 @@ public class Question implements Serializable {
 
     public void setType(QuestionType type) {
         this.type = type;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 }

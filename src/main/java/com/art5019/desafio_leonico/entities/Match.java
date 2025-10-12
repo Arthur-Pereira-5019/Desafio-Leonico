@@ -21,6 +21,9 @@ public class Match {
     @Column
     String password;
 
+    @Column
+    List<Question> questions = new ArrayList<>();
+
     public Integer getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class Match {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }

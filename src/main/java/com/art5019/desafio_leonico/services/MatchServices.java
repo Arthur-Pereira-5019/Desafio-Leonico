@@ -1,9 +1,10 @@
 package com.art5019.desafio_leonico.services;
 
-import com.art5019.desafio_leonico.entities.CreateMatchRequest;
-import com.art5019.desafio_leonico.entities.JoinMatchRequest;
-import com.art5019.desafio_leonico.entities.Match;
-import com.art5019.desafio_leonico.entities.Player;
+import com.art5019.desafio_leonico.entities.*;
+import com.art5019.desafio_leonico.entities.dtos.CreateMatchRequest;
+import com.art5019.desafio_leonico.entities.dtos.JoinMatchRequest;
+import com.art5019.desafio_leonico.entities.dtos.JoinMatchReturn;
+import com.art5019.desafio_leonico.exceptions.MatchEnteringException;
 import com.art5019.desafio_leonico.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,16 @@ public class MatchServices {
         return mr.findById(id).orElseThrow(() -> new RuntimeException("Match not found"));
     }
 
-    public void joinMatch (JoinMatchRequest jmr) {
+    public JoinMatchReturn joinMatch (JoinMatchRequest jmr) {
         Match m = findById(jmr.id());
         if(jmr.password().equals(m.getPassword())) {
             Player p = new Player(jmr.playerName());
             ps.savePlayer(p);
             m.getPlayers().add(p);
+            JoinMatchReturn jmret = new JoinMatchReturn(jmr.id(),p.getId());
+            return jmret;
+        } else {
+            throw new MatchEnteringException("Erro ao entrar na partida.");
         }
     }
 
@@ -41,6 +46,11 @@ public class MatchServices {
         Match m = new Match();
         m.setPassword(cmr.password());
         return mr.save(m);
+    }
+
+    public QuestionDTO currentQuestion(Integer id) {
+        Player p = ps.findPlayer(id);
+        return qs.presentQuestion(p.getCurrentMatch().getQuestions().get(p.getCurrentQuestion()));
     }
 
 }

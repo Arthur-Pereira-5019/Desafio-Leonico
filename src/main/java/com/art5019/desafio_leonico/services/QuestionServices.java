@@ -1,10 +1,10 @@
 package com.art5019.desafio_leonico.services;
 
+import com.art5019.desafio_leonico.entities.*;
+import com.art5019.desafio_leonico.entities.dtos.Answer;
+import com.art5019.desafio_leonico.repository.PlayerRepository;
 import com.art5019.desafio_leonico.repository.QuestionRepository;
-import com.art5019.desafio_leonico.entities.QuestionType;
 import com.art5019.desafio_leonico.Result;
-import com.art5019.desafio_leonico.entities.Answer;
-import com.art5019.desafio_leonico.entities.Question;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +19,9 @@ import java.util.Random;
 public class QuestionServices {
     @Autowired
     QuestionRepository qr;
+
+    @Autowired
+    PlayerRepository pr;
 
     Random random = new Random();
 
@@ -56,15 +59,16 @@ public class QuestionServices {
         return questions.get(random.nextInt(0, questions.size()));
     }
 
-    public Question mock() {
-        Question q = new Question();
-        q.setAnswer("2");
-        q.setType(QuestionType.OPEN);
-        q.setBasePoints(3);
-        q.setStatement("Quantos folhetos embrionários tem os cnidários");
-        q.setExtraTime(1);
-        q.setDificulty(2);
-        return q;
+    public QuestionDTO presentQuestion(Question q) {
+        QuestionDTO qd = new QuestionDTO();
+        qd.setType(q.getType());
+        qd.setQuestionText(q.getStatement());
+        return qd;
+    }
+
+    //TODO: Implement
+    public String treatStatement(String statement) {
+        return null;
     }
 
 }

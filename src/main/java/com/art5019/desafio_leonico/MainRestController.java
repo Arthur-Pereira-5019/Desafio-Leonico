@@ -1,6 +1,9 @@
 package com.art5019.desafio_leonico;
 
 import com.art5019.desafio_leonico.entities.*;
+import com.art5019.desafio_leonico.entities.dtos.Answer;
+import com.art5019.desafio_leonico.entities.dtos.CreateMatchRequest;
+import com.art5019.desafio_leonico.entities.dtos.JoinMatchRequest;
 import com.art5019.desafio_leonico.services.MatchServices;
 import com.art5019.desafio_leonico.services.QuestionServices;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,9 +23,9 @@ public class MainRestController {
     @Autowired
     MatchServices ms;
 
-    @GetMapping("/q")
-    public Question question() {
-        return qs.randomQuestion();
+    @GetMapping("/q/{id}")
+    public QuestionDTO question(@PathVariable("id") Integer id) {
+        return ms.currentQuestion(id);
     }
 
     @PostMapping("/q")
@@ -33,11 +36,6 @@ public class MainRestController {
     @DeleteMapping("/q/{id}")
     public void deleteQuestion(@PathVariable("id") Long id) {
         qs.deleteQuestion(id);
-    }
-
-    @GetMapping("/q/mock")
-    public Question mock() {
-        return qs.mock();
     }
 
     @PostMapping("/q/answer")
@@ -53,6 +51,11 @@ public class MainRestController {
     @PostMapping("/match/createMatch")
     public Match createMatch(CreateMatchRequest cmr, HttpServletResponse response) throws IOException {
         return ms.createMatch(cmr);
+    }
+
+    @PostMapping("/match/joinMatch")
+    public Match createMatch(JoinMatchRequest jmr, HttpServletResponse response) throws IOException {
+        return ms.joinMatch(jmr);
     }
 
 }
